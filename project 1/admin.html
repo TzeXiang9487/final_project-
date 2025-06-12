@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Movie Bookings</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-to-home-btn">← Back to Home</a>
+        <h1>📊 Admin Dashboard</h1>
+    </header>
+
+    <main class="container">
+        <section class="admin-section">
+            <h2>Recent Bookings</h2>
+            <div id="loading-message" class="loading-message">Loading bookings...</div>
+            <div id="error-message" class="error-message" style="display: none;"></div>
+            <table id="bookings-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Movie</th>
+                        <th>Location</th>
+                        <th>Time</th>
+                        <th>Seats</th>
+                        <th>Food Items</th>
+                        <th>Total (RM)</th>
+                        <th>Cardholder</th>
+                        <th>Card Masked</th>
+                        <th>Booking Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Bookings will be loaded here by JavaScript -->
+                </tbody>
+            </table>
+            <p id="no-bookings-message" style="display: none; text-align: center; color: #aaa; margin-top: 20px;">No bookings found yet.</p>
+        </section>
+    </main>
+
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(circle at 50% 10%, #000000 0%, #000a14 40%, #000000 100%);
+    color: #e0e0e0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+header {
+    background: linear-gradient(to right, #001f3f, #003366, #001f3f);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 255, 0.5);
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1200px; /* Wider for admin table */
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    color: #00ccff;
+    text-shadow: 0 0 8px rgba(0, 204, 255, 0.7);
+    font-size: 2.5em;
+    margin: 0 auto; /* Center the title */
+    flex-grow: 1; /* Allow it to take space */
+    text-align: center;
+}
+
+.back-to-home-btn {
+    background-color: #00ccff;
+    color: #001f3f;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+.back-to-home-btn:hover {
+    background-color: #0099cc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 204, 255, 0.4);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    background: linear-gradient(to bottom right, #001f3f, #003366);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 204, 255, 0.3), inset 0 0 10px rgba(0, 204, 255, 0.1);
+    border: 1px solid #005cbf;
+    margin-top: 20px;
+}
+
+.admin-section h2 {
+    color: #00ccff;
+    text-shadow: 0 0 5px rgba(0, 204, 255, 0.5);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 204, 255, 0.3);
+    padding-bottom: 10px;
+    font-size: 2em;
+    text-align: center;
+}
+
+.loading-message, .error-message, .no-bookings-message {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2em;
+    color: #00ccff;
+}
+
+.error-message {
+    color: #ff4d4d;
+}
+
+
+#bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#bookings-table th, #bookings-table td {
+    border: 1px solid rgba(0, 204, 255, 0.2);
+    padding: 12px;
+    text-align: left;
+    color: #e0e0e0;
+}
+
+#bookings-table th {
+    background-color: #003366;
+    color: #00ccff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    position: sticky; /* Make headers sticky for scrolling tables */
+    top: 0;
+    z-index: 2; /* Ensure sticky header is above content */
+}
+
+#bookings-table tbody tr:nth-child(even) {
+    background-color: rgba(0, 10, 20, 0.5);
+}
+
+#bookings-table tbody tr:hover {
+    background-color: rgba(0, 20, 40, 0.7);
+    color: #00ccff;
+    cursor: pointer;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    #bookings-table, #bookings-table thead, #bookings-table tbody, #bookings-table th, #bookings-table td, #bookings-table tr {
+        display: block;
+    }
+
+    #bookings-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    #bookings-table tr {
+        margin-bottom: 15px;
+        border: 1px solid rgba(0, 204, 255, 0.2);
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: rgba(0, 10, 20, 0.7);
+    }
+
+    #bookings-table td {
+        border: none;
+        border-bottom: 1px dashed rgba(0, 204, 255, 0.1);
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    #bookings-table td:before {
+        position: absolute;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #00ccff;
+    }
+
+    /* Label the data */
+    #bookings-table td:nth-of-type(1):before { content: "ID:"; }
+    #bookings-table td:nth-of-type(2):before { content: "Movie:"; }
+    #bookings-table td:nth-of-type(3):before { content: "Location:"; }
+    #bookings-table td:nth-of-type(4):before { content: "Time:"; }
+    #bookings-table td:nth-of-type(5):before { content: "Seats:"; }
+    #bookings-table td:nth-of-type(6):before { content: "Food Items:"; }
+    #bookings-table td:nth-of-type(7):before { content: "Total (RM):"; }
+    #bookings-table td:nth-of-type(8):before { content: "Cardholder:"; }
+    #bookings-table td:nth-of-type(9):before { content: "Card Masked:"; }
+    #bookings-table td:nth-of-type(10):before { content: "Booking Date:"; }
+}

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beyond The Screen</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<script>
+  // Run when the page loads
+  window.onload = function () {
+    const authButton = document.getElementById('authButton');
+    const user = localStorage.getItem("loggedInUser");
+
+    if (user) {
+      authButton.textContent = "Logout";
+    } else {
+      authButton.textContent = "Sign In";
+    }
+  };
+
+  function handleAuthAction() {
+    const user = localStorage.getItem("loggedInUser");
+
+    if (user) {
+      // Log out
+      localStorage.removeItem("loggedInUser");
+      alert("Logged out successfully.");
+      location.reload(); // Refresh the page to update UI
+    } else {
+      // Redirect to login page
+      window.location.href = "login.html";
+    }
+  }
+
+  // New function for the Admin button
+  function handleAdminAction() {
+    // Placeholder for admin login/dashboard logic
+    alert("Admin button clicked! (This would lead to an admin panel)");
+    // You might redirect to an admin-specific page here, e.g.:
+    // window.location.href = "admin_dashboard.html";
+  }
+</script>
+<body>
+
+  <header>
+    <!-- New Admin button added here -->
+    <button id="adminButton" class="admin-btn" onclick="handleAdminAction()">Admin</button>
+    
+    <div class="logo">
+    </div>
+    <h1 class="main-title">Welcome to BEYOND the SCREEN</h1>
+    <button id="authButton" class="sign-in" onclick="handleAuthAction()">Sign In</button>
+  </header>
+
+  <section class="secondary-title-section">
+      <h2 class="now-showing-title">NOW SHOWING</h2>
+      <p class="sub-title">Choose your movie and enjoy the show!</p>
+  </section>
+
+
+  <main id="main-content">
+<section id="movie-grid" class="movie-grid">
+  <!-- Movie 1 -->
+  <div class="movie-card" data-movie="The Boy and the Heron">
+    <div class="movie-image-container">
+      <img src="image/movie/苍鹭.jpg" alt="The Boy and the Heron" />
+      <div class="movie-description">A young boy enters a mysterious world guided by a talking heron.</div>
+    </div>
+    <h3>The Boy and the Heron</h3>
+  </div>
+
+  <!-- Movie 2 -->
+  <div class="movie-card" data-movie="Your Name">
+    <div class="movie-image-container">
+      <img src="image/movie/Your_name.jpg" alt="Your Name" />
+      <div class="movie-description">Two strangers mysteriously swap bodies and try to find each other.</div>
+    </div>
+    <h3>Your Name</h3>
+  </div>
+
+  <!-- Movie 3 -->
+  <div class="movie-card" data-movie="Howl's Moving Castle">
+    <div class="movie-image-container">
+      <img src="image/movie/Howls-moving-castleposter.jpg" alt="Howl's Moving Castle" />
+      <div class="movie-description">A girl cursed by a witch finds refuge in a magical walking castle.</div>
+    </div>
+    <h3>Howl's Moving Castle</h3>
+  </div>
+
+  <!-- Movie 4 -->
+  <div class="movie-card" data-movie="Suzume">
+    <div class="movie-image-container">
+      <img src="image/movie/suzume.jpg" alt="Suzume" />
+      <div class="movie-description">Suzume helps close magical doors causing disasters across Japan.</div>
+    </div>
+    <h3>Suzume</h3>
+  </div>
+
+  <!-- Movie 5 -->
+  <div class="movie-card" data-movie="Gundam Unicorn">
+    <div class="movie-image-container">
+      <img src="image/movie/gundam uc.png" alt="Gundam Unicorn" />
+      <div class="movie-description">A teen pilot discovers the power of the mysterious Unicorn Gundam.</div>
+    </div>
+    <h3>Gundam Unicorn</h3>
+  </div>
+
+  <!-- Movie 6 -->
+  <div class="movie-card" data-movie="Fate/stay night: Heaven's Feel">
+    <div class="movie-image-container">
+      <img src="image/movie/fsn hf.jpg" alt="Fate/stay night: Heaven's Feel" />
+      <div class="movie-description">Dark secrets unfold as the Holy Grail War reaches its darkest path.</div>
+    </div>
+    <h3>Fate/stay night: Heaven's Feel</h3>
+  </div>
+
+  <!-- Movie 7 -->
+  <div class="movie-card" data-movie="FGO: Final Singularity">
+    <div class="movie-image-container">
+      <img src="image/movie/fgo.jpg" alt="FGO: Final Singularity" />
+      <div class="movie-description">The Chaldea team faces the final battle to save humanity's future.</div>
+    </div>
+    <h3>FGO: Final Singularity</h3>
+  </div>
+
+  <!-- Movie 8 -->
+  <div class="movie-card" data-movie="Demon Slayer: Infinity Castle">
+    <div class="movie-image-container">
+      <img src="image/movie/Kimetsu_no_Yaiba_Mugen_Ressha_Hen_Poster.jpg" alt="Demon Slayer: Mugen Train" />
+      <div class="movie-description">Tanjiro and friends face a powerful demon aboard a haunted train.</div>
+    </div>
+    <h3>Demon Slayer: Mugen Train</h3>
+  </div>
+
+  <!-- Movie 9 -->
+  <div class="movie-card" data-movie="The Million-dollar Pentagram">
+    <div class="movie-image-container">
+      <img src="image/movie/Conan_Movie_27.jpg" alt="The Million-dollar Pentagram" />
+      <div class="movie-description">Conan faces off against a legendary thief in a battle of wits over a priceless sword.</div>
+    </div>
+    <h3>Conan:The Million-dollar Pentagram</h3>
+  </div>
+
+  <!-- Movie 10 -->
+  <div class="movie-card" data-movie="Attack on Titan: The Last Attack">
+    <div class="movie-image-container">
+      <img src="image/movie/aot.webp" alt="Attack on Titan: The Last Attack" />
+      <div class="movie-description">"In a final stand, humanity battles to end the titan threat once and for all."</div>
+    </div>
+    <h3>Attack on Titan: The Last Attack</h3>
+  </div>
+</section>
+
+
+    <section class="schedule-box">
+      <div class="column location">
+        <h2>Location</h2>
+        <ul id="location-list">
+          <li>Gurney Plaza</li>
+          <li>Queensbay Mall</li>
+          <li>Sunway Carnival Mall</li>
+        </ul>
+      </div>
+      <div class="column time">
+        <h2>Time</h2>
+        <ul id="time-list">
+          <li>10:00 AM</li>
+          <li>12:00 PM</li>
+          <li>2:00 PM</li>
+          <li>4:00 PM</li>
+          <li>6:00 PM</li>
+          <li>8:00 PM</li>
+          <li>10:00 PM</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <div class="booking-button-container">
+    <button id="book-now-btn" class="book-now-btn" disabled>Select Seats</button>
+  </div>
+
+  <footer class="contact-footer">
+    <div class="footer-content">
+      <div class="footer-section about">
+        <h3>About Us</h3>
+        <p>Beyond The Screen is your premier destination for the latest movies and a seamless booking experience. Enjoy the magic of cinema with us!</p>
+      </div>
+      <div class="footer-section contact-info">
+        <h3>Contact Us</h3>
+        <ul>
+          <li>Email: <a href="mailto:info@beyondthescreen.com">info@beyondthescreen.com</a></li>
+          <li>Phone: +60 12-345 6789</li>
+          <li>Address: 123 Cinema Lane, George Town, Penang, Malaysia</li>
+        </ul>
+      </div>
+      <div class="footer-section social-media">
+        <h3>Connect With Us</h3>
+        <ul>
+          <li><a href="https://wa.me/60123456789" target="_blank">WhatsApp</a></li>
+          <li><a href="https://facebook.com/BeyondTheScreenMY" target="_blank">Facebook</a></li>
+          <li><a href="https://instagram.com/BeyondTheScreenMY" target="_blank">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Beyond The Screen. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up - Beyond The Screen</title>
+  <link rel="stylesheet" href="signup.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="image/icon/bts logo.png" alt="logo" width="60" height="60">
+    </div>
+  </header>
+
+  <main class="auth-container">
+    <h1>Create an Account</h1>
+    <form onsubmit="return signupUser(event)" class="auth-form">
+      <label>Email:</label>
+      <input type="email" id="signupEmail" required />
+
+      <label>Password:</label>
+      <input type="password" id="signupPassword" required />
+
+      <button type="submit">Sign Up</button>
+      <p>Already have an account? <a href="login.html">Log in here</a>.</p>
+    </form>
+  </main>
+
+  <script>
+    function signupUser(event) {
+      event.preventDefault();
+      const email = document.getElementById("signupEmail").value;
+      const password = document.getElementById("signupPassword").value;
+
+      if (localStorage.getItem(email)) {
+        alert("Account already exists with this email.");
+      } else {
+        localStorage.setItem(email, password);
+        alert("Account created successfully! Please log in.");
+        window.location.href = "login.html";
+      }
+    }
+  </script>
+</body>
+</html>
