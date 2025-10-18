@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Prepare and bind SQL statement to prevent SQL injection
         $stmt = $conn->prepare("INSERT INTO bookings (movie_name, location, time, seats_list, seats_count, seats_price, food_items, food_total, grand_total, cardholder_name, card_number_masked, booking_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssisisddsss", $movieName, $location, $time, $seatsList, $seatsCount, $seatsPrice, $foodItems, $foodTotal, $grandTotal, $cardholderName, $cardNumberMasked, $bookingDate);
+        $stmt->bind_param("sssssisddsss", $movieName, $location, $time, $seatsList, $seatsCount, $seatsPrice, $foodItems, $foodTotal, $grandTotal, $cardholderName, $cardNumberMasked, $bookingDate);
 
         if ($stmt->execute()) {
             $response = ['status' => 'success', 'message' => 'Booking confirmed!', 'orderId' => $conn->insert_id];

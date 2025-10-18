@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const SEAT_PRICE = 15.00; // Price per seat
 
     // DOM Elements
@@ -16,6 +16,49 @@ document.addEventListener('DOMContentLoaded', () => {
             <strong>${movieSelection.movie}</strong> at ${movieSelection.location} - ${movieSelection.time}
         `;
     }
+
+    /**
+     * Fetches booked seats from the database and marks them as taken
+     */
+    async function fetchAndMarkBookedSeats() {
+        if (!movieSelection) return;
+
+        try {
+            const response = await fetch('fetch_bookings.php');
+            const data = await response.json();
+
+            if (data.status === 'success' && data.bookings) {
+                // Filter bookings that match current movie selection
+                const matchingBookings = data.bookings.filter(booking => 
+                    booking.movie_name === movieSelection.movie &&
+                    booking.location === movieSelection.location &&
+                    booking.time === movieSelection.time
+                );
+
+                // Extract all booked seat numbers
+                const bookedSeats = [];
+                matchingBookings.forEach(booking => {
+                    if (booking.seats_list && Array.isArray(booking.seats_list)) {
+                        bookedSeats.push(...booking.seats_list);
+                    }
+                });
+
+                // Mark seats as taken in the HTML
+                bookedSeats.forEach(seatNumber => {
+                    const seatElement = document.querySelector(`[data-seat="${seatNumber}"]`);
+                    if (seatElement && !seatElement.classList.contains('taken')) {
+                        seatElement.classList.remove('available', 'selected');
+                        seatElement.classList.add('taken');
+                    }
+                });
+            }
+        } catch (error) {
+            console.error('Error fetching bookings:', error);
+        }
+    }
+
+    // Fetch and mark booked seats on page load
+    await fetchAndMarkBookedSeats();
 
     /**
      * Updates the summary text and total price based on selected seats.
@@ -39,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event listener for seat clicks
     seatLayout.addEventListener('click', (e) => {
         const seat = e.target.closest('.seat');
-        if (seat && !seat.classList.contains('taken')) {
+        if (seat && !seat.classList.contains('taken') && seat.classList.contains('available')) {
             seat.classList.toggle('selected');
             updateSummary();
         }

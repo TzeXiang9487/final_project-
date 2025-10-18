@@ -13,9 +13,12 @@ if ($result) {
         $bookings = [];
         while ($row = $result->fetch_assoc()) {
             // Decode JSON strings back to arrays/objects for frontend use
-            $row['seats_list'] = json_decode($row['seats_list']);
-            $row['food_items'] = json_decode($row['food_items']);
-            $bookings[] = $row;
+            $item = $row;
+
+            $item['seats_list'] = json_decode(stripslashes($item['seats_list']), true);
+            $item['food_items'] = json_decode(stripslashes($item['food_items']), true);
+
+            $bookings[] = $item;
         }
         $response = ['status' => 'success', 'message' => 'Bookings fetched successfully.', 'bookings' => $bookings];
     } else {
